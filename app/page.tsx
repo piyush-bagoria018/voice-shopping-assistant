@@ -146,23 +146,23 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 px-8 py-5">
-      <div className="max-w-5xl mx-auto">
-        <header className="mb-6">
-          <h1 className="text-3xl font-semibold tracking-tight">
+    <main className="h-screen bg-gray-50 px-8 py-3 flex flex-col">
+      <div className="max-w-5xl mx-auto w-full flex flex-col flex-1 min-h-0">
+        <header className="mb-3">
+          <h1 className="text-2xl font-semibold tracking-tight">
             Voice Shopping Assistant
           </h1>
-          <p className="text-gray-500 mt-1">
+          <p className="text-gray-500 text-sm">
             Manage your shopping list using voice commands.
           </p>
         </header>
 
-        <section className="mb-8 bg-white border border-gray-200 rounded-md p-6">
+        <section className="mb-3 bg-white border border-gray-200 rounded-md p-4">
           <VoiceInput onCommand={handleCommand} />
 
           <button
             onClick={() => setShowHelp(!showHelp)}
-            className="flex items-center gap-1 mx-auto mt-4 text-xs text-gray-400 hover:text-gray-600 transition-colors"
+            className="flex items-center gap-1 mx-auto mt-2 text-xs text-black-50 hover:text-black-900 transition-colors animate-pulse"
           >
             Try these voice commands
             <ChevronDown
@@ -185,8 +185,8 @@ export default function Home() {
         </section>
 
         {suggestions.length > 0 && (
-          <section className="mb-8">
-            <p className="text-sm text-gray-500 mb-3">You may also need:</p>
+          <section className="mb-3">
+            <p className="text-xs text-gray-500 mb-2">You may also need:</p>
             <div className="flex flex-wrap gap-2">
               {suggestions.map((s, i) => (
                 <button
@@ -203,7 +203,7 @@ export default function Home() {
           </section>
         )}
 
-        <section className="mb-6">
+        <section className="mb-3">
           <div className="relative">
             <Search
               size={16}
@@ -227,7 +227,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section>
+        <section className="flex-1 min-h-0 flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold">
               Shopping List
@@ -265,7 +265,7 @@ export default function Home() {
               </p>
             )}
 
-          <div className="max-h-[50vh] overflow-y-auto space-y-6 pr-2">
+          <div className="flex-1 overflow-y-auto space-y-6 pr-2">
             {Object.entries(filteredGroupedItems).map(
               ([category, categoryItems]) => (
                 <div key={category}>
