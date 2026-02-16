@@ -59,7 +59,7 @@ export default function VoiceInput({ onCommand }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-4 items-center">
+    <div className="flex flex-col gap-2 items-center">
       <div className="flex gap-2">
         {LANGUAGES.map((lang) => (
           <button
@@ -78,7 +78,7 @@ export default function VoiceInput({ onCommand }: Props) {
 
       <button
         onClick={toggleListening}
-        className={`px-6 py-3 rounded-full text-white transition ${
+        className={`px-5 py-2 rounded-full text-white text-sm transition ${
           isListening ? "bg-red-500 animate-pulse" : "bg-black"
         }`}
       >
@@ -86,7 +86,7 @@ export default function VoiceInput({ onCommand }: Props) {
       </button>
 
       {text && (
-        <div className="bg-gray-100 p-3 rounded-lg w-full text-center">
+        <div className="bg-gray-100 p-2 rounded-lg w-full text-center text-sm">
           {text}
         </div>
       )}
