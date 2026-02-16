@@ -6,7 +6,7 @@ import { ParsedCommand } from "@/lib/parser";
 import { getSuggestions } from "@/lib/suggestions";
 import { getCategory } from "@/lib/categories";
 import toast from "react-hot-toast";
-import { Trash2, Pencil, Search, X } from "lucide-react";
+import { Trash2, Pencil, Search, X, ChevronDown } from "lucide-react";
 
 interface Item {
   name: string;
@@ -18,6 +18,7 @@ export default function Home() {
   const [items, setItems] = useState<Item[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showHelp, setShowHelp] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("shopping-items");
@@ -158,6 +159,29 @@ export default function Home() {
 
         <section className="mb-8 bg-white border border-gray-200 rounded-md p-6">
           <VoiceInput onCommand={handleCommand} />
+
+          <button
+            onClick={() => setShowHelp(!showHelp)}
+            className="flex items-center gap-1 mx-auto mt-4 text-xs text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            Try these voice commands
+            <ChevronDown
+              size={14}
+              className={`transition-transform ${showHelp ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          {showHelp && (
+            <div className="mt-3 text-xs text-gray-600 grid grid-cols-2 gap-x-6 gap-y-1 max-w-md mx-auto">
+              <p>"Add 2 milk"</p>
+              <p>"Remove apple"</p>
+              <p>"Buy 5 oranges"</p>
+              <p>"Find bread"</p>
+              <p>"I need bananas"</p>
+              <p>"Delete all chips"</p>
+              <p className="col-span-2 mt-1 text-gray-600">Hindi: "दो सेब जोड़ो" · "दूध हटाओ"</p>
+            </div>
+          )}
         </section>
 
         {suggestions.length > 0 && (
