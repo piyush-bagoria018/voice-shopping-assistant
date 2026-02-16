@@ -3,11 +3,13 @@ export const categoryMap: Record<string, string> = {
   cheese: "Dairy",
   butter: "Dairy",
   yogurt: "Dairy",
+  egg:"Dairy",
 
   banana: "Fruits",
   apple: "Fruits",
   orange: "Fruits",
   mango: "Fruits",
+  grape:"Fruits",
 
   potato: "Vegetables",
   onion: "Vegetables",
