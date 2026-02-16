@@ -3,6 +3,11 @@
 import { useState, useRef } from "react";
 import { ParsedCommand, parseCommand } from "@/lib/parser";
 
+const LANGUAGES = [
+  { code: "en-US", label: "🇺🇸 English" },
+  { code: "hi-IN", label: "🇮🇳 Hindi" },
+];
+
 interface Props {
     onCommand: (command: ParsedCommand) => void;
 }
@@ -10,6 +15,7 @@ interface Props {
 export default function VoiceInput({onCommand}: Props) {
   const [text, setText] = useState("");
   const [isListening, setIsListening] = useState(false);
+  const [language, setLanguage] = useState("en-US");
   const recognitionRef = useRef<any>(null);
 
   const toggleListening = () => {
@@ -29,7 +35,7 @@ export default function VoiceInput({onCommand}: Props) {
     }
 
     const recognition = new SpeechRecognition();
-    recognition.lang = "en-US";
+    recognition.lang = language;
     recognition.interimResults = false;
 
     recognition.onresult = (event: any) => {
@@ -51,6 +57,22 @@ export default function VoiceInput({onCommand}: Props) {
 
   return (
     <div className="flex flex-col gap-4 items-center">
+      <div className="flex gap-2">
+        {LANGUAGES.map((lang) => (
+          <button
+            key={lang.code}
+            onClick={() => setLanguage(lang.code)}
+            className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+              language === lang.code
+                ? "bg-black text-white border-black"
+                : "bg-white text-gray-600 border-gray-200 hover:bg-gray-100"
+            }`}
+          >
+            {lang.label}
+          </button>
+        ))}
+      </div>
+
       <button
         onClick={toggleListening}
         className={`px-6 py-3 rounded-full text-white transition ${
