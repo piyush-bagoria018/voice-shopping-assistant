@@ -1,15 +1,16 @@
+// maps items to their category for grouping
 export const categoryMap: Record<string, string> = {
   milk: "Dairy",
   cheese: "Dairy",
   butter: "Dairy",
   yogurt: "Dairy",
-  egg:"Dairy",
+  egg: "Dairy",
 
   banana: "Fruits",
   apple: "Fruits",
   orange: "Fruits",
   mango: "Fruits",
-  grape:"Fruits",
+  grape: "Fruits",
 
   potato: "Vegetables",
   onion: "Vegetables",
@@ -27,7 +28,7 @@ export const categoryMap: Record<string, string> = {
   wheat: "Grains",
 };
 
+// returns category for an item
 export function getCategory(item: string): string {
   return categoryMap[item.toLowerCase()] || "Other";
 }
-

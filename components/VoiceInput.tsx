@@ -3,22 +3,24 @@
 import { useState, useRef } from "react";
 import { ParsedCommand, parseCommand } from "@/lib/parser";
 
+// supported languages for speech recognition
 const LANGUAGES = [
   { code: "en-US", label: "🇺🇸 English" },
   { code: "hi-IN", label: "🇮🇳 Hindi" },
 ];
 
 interface Props {
-    onCommand: (command: ParsedCommand) => void;
+  onCommand: (command: ParsedCommand) => void;
 }
 
-export default function VoiceInput({onCommand}: Props) {
+export default function VoiceInput({ onCommand }: Props) {
   const [text, setText] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [language, setLanguage] = useState("en-US");
   const recognitionRef = useRef<any>(null);
 
   const toggleListening = () => {
+    // browser speech api
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
       (window as any).webkitSpeechRecognition;
@@ -42,6 +44,7 @@ export default function VoiceInput({onCommand}: Props) {
       const transcript = event.results[0][0].transcript;
       setText(transcript);
 
+      // parse the spoken text
       const parsed = parseCommand(transcript);
       onCommand(parsed);
     };

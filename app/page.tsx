@@ -48,7 +48,7 @@ export default function Home() {
 
     Object.entries(groupedItems).forEach(([category, categoryItems]) => {
       const matched = categoryItems.filter((item) =>
-        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+        item.name.toLowerCase().includes(searchQuery.toLowerCase()),
       );
       if (matched.length > 0) {
         filtered[category] = matched;
@@ -91,12 +91,12 @@ export default function Home() {
           );
         }
 
-        const category = getCategory(command.item!);
+        const category = getCategory(command.item ?? "");
 
         return [
           ...prev,
           {
-            name: command.item as string,
+            name: command.item ?? "",
             quantity: command.quantity,
             category,
           },
