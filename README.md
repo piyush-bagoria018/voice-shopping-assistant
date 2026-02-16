@@ -67,7 +67,7 @@ Open [http://localhost:3000](http://localhost:3000) in Chrome or Edge (required 
 
 ## Deployment
 
-Deployed on Vercel — [Live URL]
+Deployed on Vercel — [\[Live URL\]](https://voice-shopping-assistantassessment.vercel.app/)
 
 ---
 
